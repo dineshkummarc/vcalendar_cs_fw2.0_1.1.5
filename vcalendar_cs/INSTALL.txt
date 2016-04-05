@@ -1,0 +1,89 @@
+INSTALLATION GUIDE
+VCalendar v 1.1.5  
+
+
+INSTALLATION 
+------------
+1. Download the latest VCalendar version
+
+2. Unzip the VCalendar zip file into your webroot. 
+
+3. Create an IIS virtual directory and point it to this  folder. 
+In IIS right-click on 'Default Web Site' and select New/Virtual Directory.
+This will launch a wizard that will allow you to configure your Virtual Directory.
+
+
+4. CONFIGURING VCALENDAR WITH THE INSTALLATION WIZARD
+     
+4.1. Opening http://<yourServer>/<VCalendarDirectory>/install/install.aspx in your browser will start the Installation Wizard.
+ 
+4.2. On Step 2 you can:
+ - Change site parameters (the parameters are stored in web.config) 
+   checking the "Apply changes to configuration file" box;
+   and/or 
+ - load the data into the database using the SQL script checking "Remove and recreate tables" box 
+ 
+4.4. On Step 3 click on 'Start' to run Vcalendar
+ 
+
+5. CONFIGURING VCALENDAR MANUALLY
+
+5.1. The following step is necessary only if you plan to use MSSQL Server. For MS Access please skip this step. 
+
+	Creating a Database in SQL Server. 
+	a. If you use a remote hosting environment, your hosting provider should configure 
+           an SQL Server database, and provide you with connection instructions. 
+	b. For the localhost you will need to create a new database. Creation of a local 
+           database depends on available database tools on your client side. 
+	c. In Enterprise Manager to create a new Database right-click on Databases 
+           then select a New Database.
+	d. In the "New Database" dialog enter the database name (it can be any name, 
+           by default the default name of the connection string is VCalendar).
+	e. Click Ok. 
+	f. You can also specify a custom Collation and database names, 
+           the defaults will be also supported.
+	g. Use VCalendar_MSSQL.sql in Enterprise Manager to create tables with 
+           initial data using, or use the "Install.cmd" command file with 
+           ServerName, DatabaseName,  User [Password] parameters from folder "install" 
+
+
+5.2. Configuring web.config to work with Access file.
+It is necessary to configure five settings in the <appSettings> group of settings:
+	a. In the "calendarString" settings please specify the full path to the database file 
+	(for example, <add key="calendarString" value="Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=C:\VCalendarp\DB\VCalendar.mdb;Persist Security Info=False;User ID=Admin;Password="/> ).
+	 
+	b. In the "ServerUrl" settings specify ServerURL 
+	(for example, <add key="ServerUrl" value="http://MySite.Com/vcalendar_vb/"/>).
+
+	c. In the "calendarType" settings specify OleDb
+	(<add key="calendarType" value="OleDb"/>)
+
+	d. In the "calendarServer" settings specify MSAccess 
+	(<add key="calendarServer" value="MSAccess"/>).
+
+	e. In the "calendarBoolFormat" settings specify true;false 
+	(<add key="calendarBoolFormat" value="true;false"/>).
+
+
+
+6. Configuring web.config to work with MSSQL server.
+It is necessary to configure five settings in the <appSettings> group of settings.
+
+	a. In the "calendarString" settings specify the database host, login and password 
+        you will be using.
+	(for example, <add key="calendarString" value="Persist Security Info=False;User ID=admin;Initial Catalog=vcalendar;Data Source=localhost;User ID=admin;Password=admin"/>).
+	 
+	b. In the "ServerUrl" settings specify ServerURL 
+	(for example, <add key="ServerUrl" value="http://MySite.Com/vcalendar_vb/"/>).
+
+	c. In the "calendarType" settings specify Sql
+	(<add key="calendarType" value="Sql"/>)
+
+	d. In the "calendarServer" settings specify MSSQLServer 
+	(<add key="calendarServer" value="MSSQLServer"/>).
+
+	e. In the "calendarBoolFormat" settings specify 1;0
+	(<add key="calendarBoolFormat" value="1;0"/>).
+
+
+

@@ -1,0 +1,8 @@
+//AssemblyInfo  @0-C48D516B
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+[assembly: AssemblyCulture("ru")]
+//End AssemblyInfo 
+
